@@ -2,7 +2,13 @@
 
 Este projeto ainda não possui release pública final homologada. Versões candidatas não devem ser interpretadas como release estável.
 
-## Candidato de validação — 5 de novembro de 2026
+## Candidato local LiveFlow Studio — 5 de novembro de 2026
+
+- A interface local ganhou sidebar recolhível com dez destinos, barra superior compacta, temas Automático/Claro/Escuro e calendário com mês, ano e data manual DD/MM/AAAA.
+- A suíte local atual tem 123 testes (122 passaram; 1 skip DPAPI) e a suíte Open Core tem 8 testes aprovados. Smokes GUI passaram no Python, no EXE e no ZIP extraído; NSIS passou instalação/desinstalação isolada.
+- O candidato foi criado sem OAuth incorporado. Não houve homologação gráfica manual, login Google, DPAPI no perfil de destino ou operações reais no YouTube; portanto não é release final.
+
+## Candidato de validação anterior — 5 de novembro de 2026
 
 - Reexecutados 102 testes da aplicação (101 passaram; 1 skip DPAPI), 8 testes Open Core, compilação e smoke da interface.
 - O EXE e o ZIP Windows foram reconstruídos em `work/validation`; ambos passaram os smoke tests após extração limpa. O modo empacotado de manutenção também passou com dados isolados.
