@@ -1,0 +1,7 @@
+LiveFlow
+
+Open Core — somente o código em open_core/ e arquivos explicitamente identificados são licenciados sob MPL-2.0. Veja LICENSE e docs/LICENSE-MAP.md.
+
+O código proprietário do núcleo de autenticação, DPAPI, integração YouTube e publicação não está incluído neste repositório de código aberto. A distribuição binária pode conter esses módulos sob termos próprios e acompanha EULA e avisos de terceiros.
+
+LiveFlow, seu logotipo e sua identidade visual são marcas/assets do publicador. Google, YouTube, OBS e nomes de terceiros são de seus respectivos titulares.
