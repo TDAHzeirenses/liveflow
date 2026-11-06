@@ -6,7 +6,7 @@ The Windows LiveFlow application is a separate, mixed-license product. Its deskt
 
 ## Open Core module
 
-`open_core/recurrence.py` generates daily, weekly, monthly, and interval-based occurrences, renders date templates, and serializes recurrence rules. The module uses the Python standard library.
+`open_core/recurrence.py` generates daily, weekly, monthly, and interval-based occurrences, renders date templates, and serializes recurrence rules, including an optional time cutoff on the final date. The module uses the Python standard library.
 
 Run its tests with:
 

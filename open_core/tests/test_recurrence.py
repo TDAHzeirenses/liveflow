@@ -63,6 +63,29 @@ class RecurrenceEngineTests(unittest.TestCase):
         result = occurrences(rule, through=date(2026, 11, 8))
         self.assertEqual([item.date() for item in result], [date(2026, 11, 5), date(2026, 11, 8)])
 
+    def test_final_cutoff_time_applies_only_to_the_last_date(self):
+        rule = RecurrenceRule(
+            start_date=date(2026, 11, 5),
+            frequency="daily",
+            times=[time(9), time(18)],
+            end_date=date(2026, 11, 6),
+            end_time=time(12),
+            timezone="UTC",
+        )
+        result = occurrences(rule)
+        self.assertEqual([(item.date(), item.strftime("%H:%M")) for item in result], [
+            (date(2026, 11, 5), "09:00"), (date(2026, 11, 5), "18:00"),
+            (date(2026, 11, 6), "09:00"),
+        ])
+
+    def test_rule_json_round_trip_keeps_final_cutoff_time(self):
+        original = RecurrenceRule(
+            start_date=date(2026, 11, 5), times=[time(19)], frequency="daily",
+            end_date=date(2026, 11, 7), end_time=time(20, 30), timezone="UTC",
+        )
+        self.assertEqual(rule_from_dict(rule_to_dict(original)), original)
+        self.assertEqual(rule_from_dict(json.dumps(rule_to_dict(original))), original)
+
     def test_rule_json_round_trip_keeps_exceptions_and_timezone(self):
         original = RecurrenceRule(
             start_date=date(2026, 11, 5),

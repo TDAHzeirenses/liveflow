@@ -2,6 +2,13 @@
 
 Este projeto ainda não possui release pública final homologada. Versões candidatas não devem ser interpretadas como release estável.
 
+## Motor de recorrência — horário limite final — 5 de novembro de 2026
+
+- Regras podem definir `end_time` junto com `end_date`; ocorrências posteriores ao limite são omitidas somente na última data.
+- Serialização antiga continua compatível: regras sem `end_time` mantêm o resultado anterior.
+- A suíte Open Core passou com 10 testes.
+- Este commit atualiza apenas o módulo reutilizável sob MPL-2.0. Não contém EXE, credenciais, tokens, QR financeiro ou o aplicativo desktop proprietário; não cria uma release binária.
+
 ## Candidato local LiveFlow Studio — 5 de novembro de 2026
 
 - A interface local ganhou sidebar recolhível com dez destinos, barra superior compacta, temas Automático/Claro/Escuro e calendário com mês, ano e data manual DD/MM/AAAA.

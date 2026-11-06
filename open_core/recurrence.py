@@ -25,6 +25,7 @@ class RecurrenceRule:
     excluded_dates: set[date] = field(default_factory=set)
     timezone: str = "America/Sao_Paulo"
     excluded_datetimes: set[datetime] = field(default_factory=set)
+    end_time: time | None = None
 
 
 def rule_to_dict(rule: RecurrenceRule) -> dict:
@@ -33,6 +34,7 @@ def rule_to_dict(rule: RecurrenceRule) -> dict:
         "times": [value.isoformat(timespec="minutes") for value in rule.times],
         "frequency": rule.frequency,
         "end_date": rule.end_date.isoformat() if rule.end_date else None,
+        "end_time": rule.end_time.isoformat(timespec="minutes") if rule.end_time else None,
         "count": rule.count,
         "interval_days": rule.interval_days,
         "weekdays": list(rule.weekdays),
@@ -56,6 +58,7 @@ def rule_from_dict(value: dict | str) -> RecurrenceRule:
         {date.fromisoformat(item) for item in data.get("excluded_dates", [])},
         data.get("timezone", "America/Sao_Paulo"),
         {datetime.fromisoformat(item) for item in data.get("excluded_datetimes", [])},
+        time.fromisoformat(data["end_time"]) if data.get("end_time") else None,
     )
 
 
@@ -117,6 +120,8 @@ def occurrences(rule: RecurrenceRule, *, through: date | None = None,
         if day in rule.excluded_dates:
             continue
         for at in sorted(rule.times):
+            if rule.end_date == day and rule.end_time is not None and at > rule.end_time:
+                continue
             occurrence = datetime.combine(day, at, tzinfo=zone)
             if occurrence not in rule.excluded_datetimes:
                 results.append(occurrence)
